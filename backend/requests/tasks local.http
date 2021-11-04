@@ -1,0 +1,41 @@
+#### ACTIVATE STATION
+GET http://localhost:4200/getJ
+Content-Type: application/json
+
+{
+  "JType": 0,
+  "JSubtype": 1,
+  "from":1635881984000,
+  "to":1635881986000
+}
+
+#### ACTIVATE STATION
+GET http://localhost:4200/getJ
+Content-Type: application/json
+
+{
+  "JType": 1,
+  "JSubtype": 4
+}
+
+#### ACTIVATE STATION
+GET http://localhost:4200/getJ/6181b83fb52129406ceeb232
+Content-Type: application/json
+
+{
+}
+
+#### ACTIVATE STATION
+GET http://localhost:4200/getJ
+Content-Type: application/json
+
+{
+}
+
+#### ACTIVATE STATION
+POST http://localhost:4200/removeJ
+Content-Type: application/json
+
+{
+  "_id": "6181be24b3b1f31a242278ec"
+}
