@@ -50,11 +50,12 @@ export const initMatch = (matchCode: string) => {
         }
     }
 
-    print();
+    printMatch();
 
 }
 
-export const print = () => {
+export const printMatch = () => {
+    console.log("----------------------------------------------------------");
     console.log(" ------- | Players |------------")
     for (let j = 0; j < NUMBER_OF_PLAYERS; j++) {
         console.log("Jugador", j)
@@ -63,5 +64,6 @@ export const print = () => {
 
     console.log(" ------- | Hidden cards |------------")
     console.log(AllMatchs[matchCode].hiddenCards)
+    console.log("----------------------------------------------------------");
 }
 
