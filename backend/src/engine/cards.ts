@@ -1,8 +1,8 @@
 
 export enum CardType {
-    Person,
-    Module,
-    Error,
+    Person = "Person",
+    Module = "Module",
+    Error = "Error",
 }
 
 export interface ICard {
@@ -123,7 +123,7 @@ export const AllCards: ICard[] = [
 ]
 
 export const shuffleCards = (): ICard[] => {
-    const shuffledCards: ICard[] = AllCards.map(card => card);
+    const shuffledCards: ICard[] = AllCards;
     let currentIndex = shuffledCards.length, randomIndex;
 
     while (currentIndex != 0) {
