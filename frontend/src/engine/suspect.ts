@@ -15,12 +15,14 @@ export const throwSuspect = (matchCode: string, throwedCard: ThrowedCard): Owned
 
     if (cardsInTheHandOfNextPlayer.length == 0) {
         nextTurn(matchCode)
+        printTurn(matchCode);
     } else {
         AllMatchs[matchCode].cardsOnHold = {
-            cards: cardsInTheHandOfNextPlayer,
+            cards: cardsInTheHandOfNextPlayer.map(i => i),
             holder: AllMatchs[matchCode].currentTurn
         }
     };
+
 
     return cardsInTheHandOfNextPlayer
 
@@ -28,8 +30,7 @@ export const throwSuspect = (matchCode: string, throwedCard: ThrowedCard): Owned
 
 export const drawCardsAfterThrowSuspect = (matchCode: string, newCardIndex: number) => {
     const holder = AllMatchs[matchCode].cardsOnHold.holder
-    const newCard = AllMatchs[matchCode].cardsOnHold.cards[newCardIndex]
-    AllMatchs[matchCode].players[holder].table.push(newCard)
+    AllMatchs[matchCode].players[holder].table.push(AllMatchs[matchCode].cardsOnHold.cards[newCardIndex])
     printTurn(matchCode)
     nextTurn(matchCode);
 }

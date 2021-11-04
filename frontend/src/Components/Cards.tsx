@@ -1,19 +1,62 @@
 import { useState } from "react"
+import { throwAccusation } from "../engine/acusation"
 import { AllMatchs } from "../engine/allMatchs"
 import { AllCards, OwnedCard } from "../engine/cards"
 import { currentPlayerName } from "../engine/prints"
+import { drawCardsAfterThrowSuspect, throwSuspect } from "../engine/suspect"
 import { matchCode } from "../TEST"
 import "./cards.css"
 
 export const AllCardsComponent = () => {
 
+    const sospechar = () => {
+        console.log("Sospechando:", personaSeleccionada, moduloSeleccionado, errorSeleccionado)
+
+        const A: number = parseInt(personaSeleccionada)
+        const B: number = parseInt(moduloSeleccionado)
+        const C: number = parseInt(errorSeleccionado)
+
+        throwSuspect(matchCode, {
+            Person: A,
+            Module: B,
+            Error: C
+        })
+
+        setTurno(currentPlayerName(matchCode))
+
+    }
+
     const acusar = () => {
         console.log("Acusando:", personaSeleccionada, moduloSeleccionado, errorSeleccionado)
+
+        const A: number = parseInt(personaSeleccionada)
+        const B: number = parseInt(moduloSeleccionado)
+        const C: number = parseInt(errorSeleccionado)
+
+        throwAccusation(matchCode, {
+            Person: A,
+            Module: B,
+            Error: C
+        })
+        setTurno(currentPlayerName(matchCode))
+    }
+
+    const lanzarCarta = () => {
+        console.log("Lanzando:", indiceSeleccionado)
+
+        const A: number = parseInt(personaSeleccionada)
+
+        drawCardsAfterThrowSuspect(matchCode, A);
+    
+        setTurno(currentPlayerName(matchCode))
     }
 
     const [personaSeleccionada, setPersonaSeleccionada] = useState("")
     const [moduloSeleccionado, setModuloSeleccionado] = useState("")
     const [errorSeleccionado, setErrorSeleccionado] = useState("")
+    const [indiceSeleccionado, setindiceSeleccionado] = useState("")
+
+    const [turno, setTurno] = useState(currentPlayerName(matchCode))
 
     return (
         <>
@@ -21,17 +64,20 @@ export const AllCardsComponent = () => {
                 <h1>Hidden cards</h1>
                 <div className="container">
                     <h5 className={`card-${AllCards[AllMatchs[matchCode].hiddenCards.HiddenPerson.id].type.toLowerCase()}`}>
-                        ●{AllCards[AllMatchs[matchCode].hiddenCards.HiddenPerson.id].name}
+                        ●{AllMatchs[matchCode].hiddenCards.HiddenPerson.id}-
+                        {AllMatchs[matchCode].hiddenCards.HiddenPerson.name}
                     </h5>
                 </div>
                 <div className="container">
                     <h5 className={`card-${AllCards[AllMatchs[matchCode].hiddenCards.HiddenModule.id].type.toLowerCase()}`}>
-                        ●{AllCards[AllMatchs[matchCode].hiddenCards.HiddenModule.id].name}
+                        ●{AllMatchs[matchCode].hiddenCards.HiddenModule.id}-
+                        {AllMatchs[matchCode].hiddenCards.HiddenModule.name}
                     </h5>
                 </div>
                 <div className="container">
                     <h5 className={`card-${AllCards[AllMatchs[matchCode].hiddenCards.HiddenError.id].type.toLowerCase()}`}>
-                        ●{AllCards[AllMatchs[matchCode].hiddenCards.HiddenError.id].name}
+                        ●{AllMatchs[matchCode].hiddenCards.HiddenError.id}-
+                        {AllMatchs[matchCode].hiddenCards.HiddenError.name}
                     </h5>
                 </div>
             </div>
@@ -47,7 +93,7 @@ export const AllCardsComponent = () => {
 
             <div className="container mt-5">
                 <h1>
-                    Es el turno de: {currentPlayerName(matchCode)}
+                    Es el turno de: {turno}
                 </h1>
             </div>
             <div className="container">
@@ -59,12 +105,17 @@ export const AllCardsComponent = () => {
                     <input type="number" className="form-control ml-1" onChange={v => setErrorSeleccionado(v.target.value)} placeholder="C3" />
                     <div className="container">
 
-                        <button type="submit" className="btn btn-primary mb-2">Sospecha</button>
-                        <button type="submit" className="btn btn-primary mb-2" onClick={acusar}>Acusación</button>
+                        <button type="submit" className="btn btn-primary mb-2" onClick={sospechar}>Sospechar</button>
+                        <button type="submit" className="btn btn-primary mb-2" onClick={acusar} >Acusar</button>
                     </div>
                 </div>
+            </div>
 
 
+            <div className="container">
+                <label htmlFor="inputPassword2" className="sr-only">Cartas</label>
+                <input type="number" className="form-control ml-1" onChange={v => setindiceSeleccionado(v.target.value)} placeholder="C1" />
+                <button type="submit" className="btn btn-primary mb-2" onClick={lanzarCarta} >Lanzar</button>
             </div>
         </>
     )
@@ -74,7 +125,6 @@ export interface PPlayerName {
     name: string
 }
 export const PlayerName = ({ name }: PPlayerName): JSX.Element => (
-
     <h1>
         {name}
     </h1>
@@ -88,7 +138,8 @@ export const Cards = ({ table }: PCards): JSX.Element => (
         {table.map(card => (
             <h5>
                 <div className={`card-${AllCards[card.cardIndex].type.toLowerCase()}`}>
-                    ●{AllCards[card.cardIndex].name}
+                    ●{AllCards[card.cardIndex].id}-
+                    {AllCards[card.cardIndex].name}
                 </div>
             </h5>
         ))}
