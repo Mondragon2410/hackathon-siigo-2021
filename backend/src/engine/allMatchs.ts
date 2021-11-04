@@ -8,7 +8,10 @@ type TMatch = {
 
 export enum MatchStatus {
     InLobi,
-    Started,
+    Turn_0,
+    Turn_1,
+    Turn_2,
+    Turn_3,
 }
 
 export interface IMatch {

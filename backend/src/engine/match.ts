@@ -25,7 +25,7 @@ export const joinPlayer = (matchCode: string, player: IPlayer) => {
 }
 
 export const initMatch = (matchCode: string) => {
-    AllMatchs[matchCode].status = MatchStatus.Started;
+    AllMatchs[matchCode].status = MatchStatus.Turn_0;
 
     let Deck: ICard[] = shuffleCards();
 
@@ -50,16 +50,18 @@ export const initMatch = (matchCode: string) => {
         }
     }
 
+    print();
+
+}
+
+export const print = () => {
     console.log(" ------- | Players |------------")
     for (let j = 0; j < NUMBER_OF_PLAYERS; j++) {
         console.log("Jugador", j)
         console.log(AllMatchs[matchCode].players[j].table);
     }
-    
+
     console.log(" ------- | Hidden cards |------------")
     console.log(AllMatchs[matchCode].hiddenCards)
-
-
 }
-
 

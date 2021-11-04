@@ -1,8 +1,8 @@
 import { createMatch, initMatch, joinPlayer } from "./engine/match";
-import { IPlayer, registerPlayer } from "./engine/players"
+import { registerPlayer } from "./engine/players"
 
 export const TEST = () => {
-    
+
     const Player_Julian = registerPlayer("Julian");
     const Player_Sebastian = registerPlayer("Sebastian");
     const Player_Daniela = registerPlayer("Daniela");
@@ -16,3 +16,4 @@ export const TEST = () => {
 
     initMatch(matchCode)
 }
+
