@@ -5,8 +5,8 @@ export const PLAYER_1 = 1;
 export const PLAYER_2 = 2;
 export const PLAYER_3 = 3;
 
-export const INIT_CARDS_FOR_PLAYER = 4;
-export const MAX_NUMBER_OF_PLAYERS = 4;
+export const CARDS_FOR_PLAYER = 4;
+export const NUMBER_OF_PLAYERS = 4;
 
 export interface IPlayer {
     name: string

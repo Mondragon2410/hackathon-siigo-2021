@@ -17,6 +17,12 @@ export interface OwnedCard {
     ownerId: number
 }
 
+export interface ThrowedCard {
+    Person: number
+    Module: number
+    Error: number
+}
+
 export const AllCards: ICard[] = [
     {
         id: 0,
@@ -117,7 +123,7 @@ export const AllCards: ICard[] = [
 ]
 
 export const shuffleCards = (): ICard[] => {
-    const shuffledCards: ICard[] = AllCards;
+    const shuffledCards: ICard[] = AllCards.map(card => card);
     let currentIndex = shuffledCards.length, randomIndex;
 
     while (currentIndex != 0) {

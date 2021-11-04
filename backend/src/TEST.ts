@@ -1,3 +1,5 @@
+import { OwnedCard } from "./engine/cards";
+import { drawCardsAfterThrowSuspect, throwSuspect } from "./engine/suspect";
 import { createMatch, initMatch, joinPlayer } from "./engine/match";
 import { registerPlayer } from "./engine/players"
 
@@ -15,5 +17,16 @@ export const TEST = () => {
     joinPlayer(matchCode, Player_Angela)
 
     initMatch(matchCode)
+
+    const Asd: OwnedCard[] = throwSuspect(matchCode, {
+        Error: 0,
+        Module: 1,
+        Person: 2,
+    })
+
+    const n = 0;
+    if (Asd.length > 0) {
+        drawCardsAfterThrowSuspect(matchCode, n)
+    }
 }
 
