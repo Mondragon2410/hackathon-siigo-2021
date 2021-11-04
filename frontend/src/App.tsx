@@ -1,8 +1,23 @@
 import './App.css';
+import { useEffect, useState } from 'react';
+import { AllCardsComponent } from './Components/Cards';
+import { TEST } from './TEST';
 
 function App() {
+
+  const [init, setInit] = useState(false)
+  useEffect(() => {
+    TEST();
+    setInit(true);
+  }, []);
+
   return (
-    <h1>Hola mundo</h1>
+    <>
+      {init ? 
+      <AllCardsComponent />
+       : null}
+    </>
+
   );
 }
 

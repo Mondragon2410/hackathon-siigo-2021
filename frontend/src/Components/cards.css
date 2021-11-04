@@ -1,0 +1,21 @@
+.player-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.card-person {
+    color: red;
+}
+
+.card-module {
+    color: green;
+}
+
+.card-error {
+    color: blue;
+}
+
+.player-action {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+}
