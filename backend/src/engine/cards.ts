@@ -5,14 +5,19 @@ export enum CardType {
     Error,
 }
 
-export interface ICard{
+export interface ICard {
     id: number,
     name: string,
     type: CardType
 
 }
 
-export const AllCards : ICard[] = [
+export interface OwnedCard {
+    cardIndex: number
+    ownerId: number
+}
+
+export const AllCards: ICard[] = [
     {
         id: 0,
         name: "Pedro",
@@ -110,3 +115,19 @@ export const AllCards : ICard[] = [
     }
 
 ]
+
+export const shuffleCards = (): ICard[] => {
+    const shuffledCards: ICard[] = AllCards;
+    let currentIndex = shuffledCards.length, randomIndex;
+
+    while (currentIndex != 0) {
+
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        [shuffledCards[currentIndex], shuffledCards[randomIndex]] = [
+            shuffledCards[randomIndex], shuffledCards[currentIndex]];
+    }
+
+    return shuffledCards;
+}
