@@ -38,9 +38,9 @@ export const initMatch = (matchCode: string) => {
 
     //Remove hidden cards from deck
     Deck = Deck.filter(card =>
-        card.id != AllMatchs[matchCode].hiddenCards.HiddenPerson.id &&
-        card.id != AllMatchs[matchCode].hiddenCards.HiddenModule.id &&
-        card.id != AllMatchs[matchCode].hiddenCards.HiddenError.id
+        card.id !== AllMatchs[matchCode].hiddenCards.HiddenPerson.id &&
+        card.id !== AllMatchs[matchCode].hiddenCards.HiddenModule.id &&
+        card.id !== AllMatchs[matchCode].hiddenCards.HiddenError.id
     );
 
     //Repart cards for each player

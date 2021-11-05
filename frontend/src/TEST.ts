@@ -6,8 +6,8 @@ export const TEST = () => {
 
     const Player_Julian = registerPlayer("Julian");
     const Player_Sebastian = registerPlayer("Sebastian");
-    const Player_Daniela = registerPlayer("Daniela");
-    const Player_Angela = registerPlayer("Angela");
+    const Player_Daniela = registerPlayer("Angie");
+    const Player_Angela = registerPlayer("Jaime");
 
     matchCode = createMatch(Player_Julian);
 

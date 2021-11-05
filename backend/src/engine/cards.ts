@@ -126,7 +126,7 @@ export const shuffleCards = (): ICard[] => {
     const shuffledCards: ICard[] = AllCards;
     let currentIndex = shuffledCards.length, randomIndex;
 
-    while (currentIndex != 0) {
+    while (currentIndex !== 0) {
 
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex--;

@@ -1,4 +1,4 @@
-import { OwnedCard as OwnedCard } from "./cards";
+import { OwnedCard } from "./cards";
 
 export const PLAYER_0 = 0;
 export const PLAYER_1 = 1;
