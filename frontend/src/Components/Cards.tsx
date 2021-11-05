@@ -16,14 +16,17 @@ export const AllCardsComponent = () => {
         const B: number = parseInt(moduloSeleccionado)
         const C: number = parseInt(errorSeleccionado)
 
-        throwSuspect(matchCode, {
+        const xx = throwSuspect(matchCode, {
             Person: A,
             Module: B,
             Error: C
         })
-
-        setTurno(currentPlayerName(matchCode))
-
+        //console.log("AAA", xx)
+        const mm = xx.map(x => x.cardIndex)
+        console.log(mm)
+        setPosiblesCartas(mm)
+        setturno(currentPlayerName(matchCode))
+        setjugadores(AllMatchs[matchCode].players)
     }
 
     const acusar = () => {
@@ -38,17 +41,16 @@ export const AllCardsComponent = () => {
             Module: B,
             Error: C
         })
-        setTurno(currentPlayerName(matchCode))
+
+        setturno(currentPlayerName(matchCode))
+        setjugadores(AllMatchs[matchCode].players)
     }
 
     const lanzarCarta = () => {
-        console.log("Lanzando:", indiceSeleccionado)
-
-        const A: number = parseInt(personaSeleccionada)
-
+        const A: number = parseInt(indiceSeleccionado)
         drawCardsAfterThrowSuspect(matchCode, A);
-    
-        setTurno(currentPlayerName(matchCode))
+        setturno(currentPlayerName(matchCode))
+        setjugadores(AllMatchs[matchCode].players)
     }
 
     const [personaSeleccionada, setPersonaSeleccionada] = useState("")
@@ -56,7 +58,10 @@ export const AllCardsComponent = () => {
     const [errorSeleccionado, setErrorSeleccionado] = useState("")
     const [indiceSeleccionado, setindiceSeleccionado] = useState("")
 
-    const [turno, setTurno] = useState(currentPlayerName(matchCode))
+    const [turno, setturno] = useState(currentPlayerName(matchCode))
+    const [jugadores, setjugadores] = useState(AllMatchs[matchCode].players)
+
+    const [posiblesCartas, setPosiblesCartas] = useState([] as number[])
 
     return (
         <>
@@ -83,7 +88,7 @@ export const AllCardsComponent = () => {
             </div>
 
             <div className="container player-container">
-                {AllMatchs[matchCode].players.map(player => (
+                {jugadores.map(player => (
                     <div className="container mt-5">
                         <PlayerName name={player.name} />
                         <Cards table={player.table} />
@@ -92,12 +97,9 @@ export const AllCardsComponent = () => {
             </div>
 
             <div className="container mt-5">
-                <h1>
-                    Es el turno de: {turno}
-                </h1>
+                <h1>Es el turno de: {turno} </h1>
             </div>
             <div className="container">
-
                 <div className="player-action">
                     <label htmlFor="inputPassword2" className="sr-only">Cartas</label>
                     <input type="number" className="form-control ml-1" onChange={v => setPersonaSeleccionada(v.target.value)} placeholder="C1" />
@@ -117,6 +119,13 @@ export const AllCardsComponent = () => {
                 <input type="number" className="form-control ml-1" onChange={v => setindiceSeleccionado(v.target.value)} placeholder="C1" />
                 <button type="submit" className="btn btn-primary mb-2" onClick={lanzarCarta} >Lanzar</button>
             </div>
+
+            <div className="container">
+                <div>Cartas: [</div>
+                {posiblesCartas.map(x => (<> {x} </>))}
+                <div>]</div>
+            </div>
+
         </>
     )
 }

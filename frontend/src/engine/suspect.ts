@@ -28,9 +28,9 @@ export const throwSuspect = (matchCode: string, throwedCard: ThrowedCard): Owned
 
 }
 
-export const drawCardsAfterThrowSuspect = (matchCode: string, newCardIndex: number) => {
-    const holder = AllMatchs[matchCode].cardsOnHold.holder
-    AllMatchs[matchCode].players[holder].table.push(AllMatchs[matchCode].cardsOnHold.cards[newCardIndex])
+export const drawCardsAfterThrowSuspect = async (matchCode: string, newCardIndex: number) => {
+    const xxx = AllMatchs[matchCode].cardsOnHold.cards[newCardIndex];
+    AllMatchs[matchCode].players[AllMatchs[matchCode].cardsOnHold.holder].table.push(xxx)
     printTurn(matchCode)
     nextTurn(matchCode);
 }

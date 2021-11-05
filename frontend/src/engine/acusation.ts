@@ -10,7 +10,7 @@ export const throwAccusation = (matchCode: string, throwedCard: ThrowedCard): vo
         AllMatchs[matchCode].hiddenCards.HiddenModule.id === throwedCard.Module &&
         AllMatchs[matchCode].hiddenCards.HiddenError.id === throwedCard.Error
 
-    console.log(won,AllMatchs[matchCode].hiddenCards.HiddenPerson.name)
+    console.log(won, AllMatchs[matchCode].hiddenCards.HiddenPerson.name)
 
     if (won) {
         matchWon(matchCode)
